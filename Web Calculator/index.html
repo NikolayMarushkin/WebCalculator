@@ -1,4 +1,100 @@
 <!DOCTYPE html>
 <html>
-    <title>Calculator</title>
+    <head>
+            <link rel="stylesheet" type="text/css" href="style.css">
+            <link href="https://fonts.googleapis.com/css?family=Open+Sans:600,700" rel="stylesheet">
+        <title>Calculator</title>
+    </head>
+    <body> 
+        <div id="model-view-calculator">
+            <div id="headline-calculator">
+                <div id="text-headline-calculator">Calculator</div>
+            </div>
+            <div id="number-line">
+                <div id="math-expression-number-line">0</div>
+            </div>   
+            <div id="text-headline-memory">Memory</div>
+            <div id="memory-line">
+                <div id="math-result-in-memory">0</div>
+            </div>
+
+
+            <div id="calculator-keyboard-1">  
+                <button class="empty" id="empty"></button>
+                <button class="empty" id="empty"></button>
+                <button class="empty" id="empty"></button>
+                <button class="empty" id="empty"></button>
+                <button class="empty" id="empty"></button>
+                <button class="empty" id="empty"></button>
+                <button class="operator-not-use" id="Inv">Inv</button>
+                <button class="operator-not-use" id="In">In</button>
+                <button class="operator-not-use" id="(">(</button>
+                <button class="operator-not-use" id=")">)</button>
+                <button class="operator-not-use" id="Int">Int</button>
+                <button class="operator-not-use" id="sinh">sinh</button>
+                <button class="number" id="sin">sin</button>
+                <button class="operator-not-use" id="x2">x<sup>2</sup></button>
+                <button class="number" id="n">n!</button>
+                <button class="operator-not-use" id="dms">dms</button>
+                <button class="operator-not-use" id="cosh">cosh</button>
+                <button class="operator" id="cos">cos</button>
+                <button class="number" id="xy">x<sup>y</sup></button>
+                <button class="number" id="ysqrtx"><sup>y</sup>&#8730x</button>
+                <button class="operator-not-use" id="pi">&#960;</button>
+                <button class="operator-not-use" id="tanh">tanh</button>
+                <button class="number" id="tan">tan</button>
+                <button class="operator-not-use" id="x3">x<sup>3</sup></button>
+                <button class="operator-not-use" id="empty"><sup>3</sup>&#8730x</button>
+                <button class="operator-not-use" id="F-E">F-E</button>
+                <button class="operator-not-use" id="Exp">Exp</button>
+                <button class="operator-not-use" id="Mod">Mod</button>
+                <button class="operator-not-use" id="logarithm">log</button>
+                <button class="operator-not-use" id="10x">10<sup>x</sup></button> 
+            </div>
+
+            <div id="calculator-keyboard-2">  
+                <button class="operator" id="MC">MC</button>
+                <button class="operator" id="MR">MR</button>
+                <button class="operator" id="MS">MS</button>
+                <button class="empty" id="empty"></button>
+                <button class="empty" id="empty"></button>
+                <button class="operator" id="backspace">CE</button>
+                <button class="operator" id="clear">C</button>
+                <button class="operator" id="+-">&#177;</button>
+                <button class="number" id="7">7</button>
+                <button class="number" id="8">8</button>
+                <button class="number" id="9">9</button>
+                <button class="operator" id="/">/</button>
+                <button class="number" id="4">4</button>
+                <button class="number" id="5">5</button>
+                <button class="number" id="6">6</button>
+                <button class="operator" id="*">*</button>
+                <button class="number" id="1">1</button>
+                <button class="number" id="2">2</button>
+                <button class="number" id="3">3</button>
+                <button class="operator" id="-">-</button>
+                <button class="number-zero" id="0">0</button>
+                <button class="operator" id=".">.</button>
+                <button class="operator" id="+">+</button>   
+            </div>
+
+            <div id="calculator-keyboard-3">  
+                <button class="empty" id="empty"></button>    
+                <button class="operator-not-use" id="sqrt">&#8730;</button>
+                <button class="operator-not-use" id="percentage">%</button>
+                <button class="operator-not-use" id="=">1/x</button>
+                <button class="equally" id="=">=</button>
+            </div>
+
+            <div id="log-board">
+                <div id=log>Log</div>
+                <div id="list"></div>
+                <button class="save">Save As...</button>
+                <button class="clear-log">Clear</button>
+            </div>
+
+        </div>
+        <script src="script.js"></script>
+    </body>
+    
 </html>
