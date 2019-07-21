@@ -53,7 +53,7 @@ body{
     border-color: rgb(120, 120, 120);
 }
 
-#math-expression-number-line{
+#math-expression-line{
 
     font-size: 16px;
     text-align: right;
@@ -183,7 +183,7 @@ body{
     background-color: rgba(0, 0, 0, 0);
 }
 
-.equally{
+#equally{
     width: 34px;
 	height: 70px;
     float: left;
@@ -196,7 +196,7 @@ body{
     border-color:rgb(120, 120, 120);
 }
 
-.number-zero{
+#number-zero{
     width: 68px;
 	height: 34px;
     float: left;
@@ -209,12 +209,12 @@ body{
     border-color:rgb(120, 120, 120);
 }
 
-.number, .operator, .number-zero, .equally{
+.number, .operator, #number-zero, #equally{
 	cursor: pointer;
 }
 
 .operator:active, .number:active,
- .number-zero:active, .equally:active{
+ #number-zero:active, #equally:active{
 	font-size: 8px;
 }
 
@@ -223,7 +223,7 @@ body{
 }
 
 .operator:focus, .number:focus, .empty:focus,
- .number-zero:focus, .equally:focus,
+ #number-zero:focus, #equally:focus,
  .clear-log:focus, .save:focus{
 	outline: 0;
 }
