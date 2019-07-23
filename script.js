@@ -165,7 +165,7 @@ for (let i = 0; i < operator.length; i++) {
                 result = factorial(eval(outputMathExpression));
                 printMathExpression(result);
 				//Запись в лог
-				printWriteToLog(eval(outputMathExpression) + "=n(" + result + ")!");		
+				printWriteToLog(eval(result) + "=n(" + outputMathExpression + ")!");		
 				//запись в локальное хранилище
 				localStorage.setItem('Log', getLog());
                 outputMathExpression = result;  
