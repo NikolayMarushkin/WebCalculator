@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-            <link rel="stylesheet" type="text/css" href="style.css">
-            <link href="https://fonts.googleapis.com/css?family=Open+Sans:600,700" rel="stylesheet">
+		<meta charset="utf-8" />
+            <link rel="stylesheet" type="text/css" href="style.css" />
+            <!--<link href="https://fonts.googleapis.com/css?family=Open+Sans:600,700" rel="stylesheet"/>-->
         <title>Calculator</title>
     </head>
     <body> 
@@ -10,14 +11,16 @@
             <div id="headline-calculator">
                 <div id="text-headline-calculator">Calculator</div>
             </div>
-            <div id="number-line">
-                <div id="math-expression-line">0</div>
-            </div>   
-            <div id="text-headline-memory">Memory</div>
-            <div id="memory-line">
-                <div id="math-result-in-memory">0</div>
-            </div>
-
+			<div id="text-headline-memory">Memory</div>
+            <div>
+				<div class="inl" id="number-line">
+					<div id="math-expression-line">0</div>
+				</div>   
+            
+				<div class="inl" id="memory-line">
+					<div id="math-result-in-memory">0</div>
+				</div>
+			</div>
 
             <div id="calculator-keyboard-1">  
                 <button class="empty" id="empty"></button>
@@ -89,12 +92,10 @@
             <div id="log-board">
                 <div id=log>Log</div>
                 <div id="list"></div>
-                <button class="save">Save As...</button>
-                <button class="clear-log">Clear</button>
+                <button id="save">Save As...</button>
+                <button id="clear-log">Clear</button>
             </div>
-
         </div>
         <script src="script.js"></script>
-    </body>
-    
+    </body>  
 </html>

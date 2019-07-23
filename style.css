@@ -32,12 +32,19 @@ body{
 }
 
 #text-headline-memory{
-    width: 800;
     font-size: 13px;
     font-weight: bold;
     margin-right: 10px;
     margin-top: 5px;
-    float: right;
+    text-align: right;
+}
+
+.inl{
+	display:inline-block;
+	margin:4px;
+	width:48%;
+	height:24px; 
+	overflow:hidden;	
 }
 
 #number-line{
@@ -45,7 +52,6 @@ body{
     height: 35px;
     width: 380px;
     margin-left: 10px;
-    margin-top: 33px;
     background-color: #ffffff;
     border-radius: 5px;
     border-style: solid;
@@ -68,7 +74,6 @@ body{
     height: 35px;
     width: 380px;
     margin-right: 10px;
-    margin-top: 10px;
     background-color: rgb(255, 255, 255);
     border-radius: 5px;
     border-style: solid;
@@ -120,8 +125,11 @@ body{
 }
 
 #list{
-    height: 295px;
-    width: 350px;
+    height: 275px;
+    width: 355px;
+	margin: 10px;
+	overflow-x:scroll;
+	
 }
 
 #log{
@@ -133,13 +141,11 @@ body{
     color: rgb(178, 178, 178);
 }
 
-.clear-log, .save{
-    width: 65px;
+#clear-log, #save{
+    width: 69px;
 	height: 30px;
     margin: 4px;
-	float: left;
 	border-radius: 5px;
-	border-width: 0;
 	font-size: 11px;
     background-color: #D5E8D4;
     border-style: solid;
@@ -218,12 +224,12 @@ body{
 	font-size: 8px;
 }
 
-.clear-log:active, .save:active{
+#clear-log:active, #save:active{
 	font-size: 10px;
 }
 
 .operator:focus, .number:focus, .empty:focus,
  #number-zero:focus, #equally:focus,
- .clear-log:focus, .save:focus{
+ #clear-log:focus, #save:focus{
 	outline: 0;
 }
