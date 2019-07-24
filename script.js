@@ -1,6 +1,3 @@
-//!TODO: ограничить ввод символов
-//!TODO: 9886/558 +- не работает
-
 document.getElementById("list").innerText = localStorage.getItem('Log');
 document.getElementById("math-result-in-memory").innerText = localStorage.getItem('Memory');
 
@@ -22,6 +19,11 @@ function printMathResultInMemory(num){
 }
 
 function printWriteToLog(mathExpr){
+	//Обратная замена root на num1**(1/num2) для  ... корней из ...
+	mathExpr = mathExpr.replace(/(\d*)\*\*\(1\/(\d+)\)/g, "$1root$2");
+	//Обратная замена ^ на ** для степени
+	mathExpr = mathExpr.replace(/\*\*/g ,"^");
+	
     document.getElementById("list").innerText += mathExpr + "\n";
 }
 
@@ -33,11 +35,12 @@ function factorial(num){
     return (num != 0) ? num * factorial(num - 1) : 1;
 }
 
+//Число в строке Memory
 var numInMemory = 0;
 
-var stageEqual = 0;
-//0: нажата кнопка равно
-//1: не нажата кнопка равно
+//0 - не нажата кнопка равно
+//1 - нажата кнопка равно
+var stage = 0;
 
 var operator = document.getElementsByClassName("operator");
 for (let i = 0; i < operator.length; i++) {
@@ -45,8 +48,8 @@ for (let i = 0; i < operator.length; i++) {
         var outputMathExpression = getMathExpression();
 		
 		//смена стостояния = на: не нажата
-		if (stageEqual == 1) {
-			stageEqual = 0;
+		if (stage == 1) {
+			stage = 0;
 		}
 		
 		//Вычисление результата выражения
@@ -64,10 +67,10 @@ for (let i = 0; i < operator.length; i++) {
 				printWriteToLog(result + "=" + outputMathExpression);
 			}
 			//запись в локальное хранилище
-			localStorage.setItem('log', getLog());
+			localStorage.setItem('Log', getLog());
             outputMathExpression = result;
-			
-			stageEqual = 1;
+				
+			stage = 1;
         }
 		
 		//проверка на добавление второй точки для числа
@@ -78,12 +81,16 @@ for (let i = 0; i < operator.length; i++) {
 		}
 			
 		if(outputMathExpression != "NaN"){
-
             if (this.id != "+-" && this.id != "MC" && this.id != "MS"  && this.id != "MR" 
             && this.id != "sin" && this.id != "cos" && this.id != "tan"
             && this.id != "n" && this.id != "equally"&& this.id != "ysqrtx"){
 				//Замена одного оператора на другой, если они вводятся подряд
 				if (isNaN(outputMathExpression.slice(-1))) {
+					//Если Infinity, тогда ничего не делаем
+					if (outputMathExpression == "Infinity") {
+						outputMathExpression = "0 ";
+						printMathExpression(0);
+					}
 					result = 
 					outputMathExpression.substring(0, outputMathExpression.length - 1) + 
 					this.id; 
@@ -128,28 +135,31 @@ for (let i = 0; i < operator.length; i++) {
                 result = Math.sin(Math.PI / 180 * eval(outputMathExpression));
                 printMathExpression(result);
 				//Запись в лог
-				printWriteToLog(result + "=sin(" + outputMathExpression + ")");		
+				printWriteToLog(result + "=sin(" + eval(outputMathExpression) + ")");		
 				//запись в локальное хранилище
 				localStorage.setItem('Log', getLog());
                 outputMathExpression = result;
+				stage = 1;
                 break;
             case "cos":
                 result = Math.cos(Math.PI / 180 * eval(outputMathExpression));
                 printMathExpression(result);
 				//Запись в лог
-				printWriteToLog(result + "=cos(" + outputMathExpression + ")");		
+				printWriteToLog(result + "=cos(" + eval(outputMathExpression) + ")");		
 				//запись в локальное хранилище
 				localStorage.setItem('Log', getLog());
-                outputMathExpression = result;     
+                outputMathExpression = result;
+				stage = 1;
                 break;
             case "tan":
                 result = Math.tan(Math.PI / 180 * eval(outputMathExpression));
                 printMathExpression(result);
 				//Запись в лог
-				printWriteToLog(result + "=tan(" + outputMathExpression + ")");		
+				printWriteToLog(result + "=tan(" + eval(outputMathExpression) + ")");		
 				//запись в локальное хранилище
 				localStorage.setItem('Log', getLog());
-                outputMathExpression = result;     
+                outputMathExpression = result; 
+				stage = 1;				
                 break;
             case "xy":
                 result = eval(outputMathExpression);
@@ -165,14 +175,15 @@ for (let i = 0; i < operator.length; i++) {
                 result = factorial(eval(outputMathExpression));
                 printMathExpression(result);
 				//Запись в лог
-				printWriteToLog(eval(result) + "=n(" + outputMathExpression + ")!");		
+				printWriteToLog(result + "=n(" + eval(outputMathExpression) + ")!");		
 				//запись в локальное хранилище
 				localStorage.setItem('Log', getLog());
                 outputMathExpression = result;  
+				stage = 1;
                 break;
 			case "MS":	
-				if (/(\d*\.?\d+)$/.test(outputMathExpression)) {
-					numInMemory = outputMathExpression.match(/(\d*\.?\d+)$/);
+				if (/\-?(\d*\.?\d+)$/.test(outputMathExpression)) {
+					numInMemory = outputMathExpression.match(/\-?(\d*\.?\d+)$/);
 					printMathResultInMemory(numInMemory[0]);
 					//сохранение в локальное хранилище
 					localStorage.setItem('Memory', numInMemory[0]);
@@ -181,7 +192,7 @@ for (let i = 0; i < operator.length; i++) {
 			case "MR":
 				if (/(\d*\.?\d+)/.test(outputMathExpression) && getMathResultInMemory() != 0) {
 					outputMathExpression = 
-					outputMathExpression.replace(/(\d*\.?\d+)$/, getMathResultInMemory());
+					outputMathExpression.replace(/\-?(\d*\.?\d+)$/, getMathResultInMemory());
 					printMathExpression(outputMathExpression);
 				}
                 break;
@@ -212,9 +223,9 @@ for (let i = 0; i < number.length; i++) {
     number[i].addEventListener('click', function(){
         var outputMathExpression = getMathExpression();
         if(outputMathExpression != NaN){
-			if (stageEqual == 1) {
+			if (stage == 1) {
 				outputMathExpression = "";
-				stageEqual = 0;
+				stage = 0;
 			}
             if (outputMathExpression == "0") {
                 outputMathExpression = "";
