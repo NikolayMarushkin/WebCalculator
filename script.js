@@ -106,28 +106,11 @@ for (let i = 0; i < operator.length; i++) {
 		//проход по всем математичекским функциям
         switch (this.id) {
             case "+-":
-				//-
-				// console.log(outputMathExpression);
-				// if (/\-(\d*\.?\d+)$/.test(outputMathExpression)) {
-					// outputMathExpression = outputMathExpression.replace(/(^|\-)(\d*\.?\d+)$/, "+$2");
-					// console.log(outputMathExpression);
-				// } else if (/(^|\+)(\d*\.?\d+)$/.test(outputMathExpression)){
-					// outputMathExpression = outputMathExpression.replace(/(^|\+)(\d*\.?\d+)$/, "-$2");
-					// console.log(outputMathExpression);
-				// }
-				// console.log(outputMathExpression);
-				// outputMathExpression = outputMathExpression.replace(/^\+(\d*\.?\d+)$/, "$1");
-				// printMathExpression(outputMathExpression);
-				
-				console.log(outputMathExpression);
 				if (/\-(\d*\.?\d+)$/.test(outputMathExpression)) {
 					outputMathExpression = outputMathExpression.replace(/(^|\-)(\d*\.?\d+)$/, "+$2");
-					console.log(outputMathExpression);
-				} else if (/(^|\D)(\d*\.?\d+)$/.test(outputMathExpression)){
-					outputMathExpression = outputMathExpression.replace(/(^|\D)(\d*\.?\d+)$/, "$1-$2");
-					console.log(outputMathExpression);
+				} else if (/(^|\+)(\d*\.?\d+)$/.test(outputMathExpression)){
+					outputMathExpression = outputMathExpression.replace(/(^|\+)(\d*\.?\d+)$/, "-$2");
 				}
-				console.log(outputMathExpression);
 				outputMathExpression = outputMathExpression.replace(/^\+(\d*\.?\d+)$/, "$1");
 				printMathExpression(outputMathExpression);
                 break;
